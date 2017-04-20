@@ -1,17 +1,29 @@
-import { ADD_GROCERY_ITEM } from './actions'
 import { combineReducers } from 'redux'
+import { TOGGLE_GROCERY } from './actions'
 
-function groceries(state = [], action) {
+let allGroceries = [
+  { id: 1, itemName: "Banaan", addedToCart: false },
+  { id: 2, itemName: "Kratje bier", addedToCart: true },
+  { id: 3, itemName: "Volkoren brood", addedToCart: false},
+  { id: 4, itemName: "Koffie", addedToCart: false},
+  { id: 5, itemName: "Melk", addedToCart: false},
+  { id: 6, itemName: "Cola", addedToCart: false},
+  { id: 7, itemName: "Appels", addedToCart: false},
+  { id: 8, itemName: "Kaas", addedToCart: false}
+]
+
+function groceries(state = allGroceries, action) {
   switch (action.type) {
-    case ADD_GROCERY_ITEM:
-      return [
-        ...state,
-        {
-          id: action.id,
-          name: action.itemName,
-          addedToCart: false
+    case TOGGLE_GROCERY:
+      return state.map((grocery) => {
+        console.log(grocery)
+        if (grocery.id === action.id) {
+          return Object.assign({}, grocery, {
+            addedToCart: !grocery.addedToCart
+          })
         }
-      ]
+        return grocery
+      })
     default:
       return state
   }

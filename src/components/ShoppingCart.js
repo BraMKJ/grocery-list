@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Grocery from './Grocery'
 
-const GroceryList = ({groceries, onGroceryClick}) => (
+const ShoppingCart = ({groceries, onGroceryClick}) => (
   <ul>
     {groceries.map(grocery =>
       <Grocery
@@ -14,7 +14,7 @@ const GroceryList = ({groceries, onGroceryClick}) => (
   </ul>
 )
 
-GroceryList.propTypes = {
+ShoppingCart.propTypes = {
   groceries: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     addedToCart: PropTypes.bool.isRequired,
@@ -23,4 +23,4 @@ GroceryList.propTypes = {
   onGroceryClick: PropTypes.func.isRequired
 }
 
-export default GroceryList
+export default ShoppingCart
